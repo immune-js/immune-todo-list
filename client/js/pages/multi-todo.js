@@ -25,8 +25,7 @@ export const update = (state, msg, context) => msg::caseOf(
 
 export const view = ({ state, actions: { AddTodoList, RemoveTodoList }, props }) => 
   h("div", 
-    [ h("button.add-todo-list", { onclick: () => AddTodoList() }, "+ Add Todolist")
-    , todoList.dynamic([state, "todoLists"], (id, list) =>
+    [ todoList.dynamic([state, "todoLists"], (id, list) =>
         h(`section[labelled-by='${id}'].todo-list`, {},
           [ h("p.smaller", ["A simple todo list demo using the ", h("strong", "immune framework")])
           , list({ id })
@@ -34,6 +33,8 @@ export const view = ({ state, actions: { AddTodoList, RemoveTodoList }, props })
           ]
         )
       )
+    , h("hr")
+    , h("button", { onclick: () => AddTodoList() }, "+ Add Todolist")
     ]
   )
 

@@ -105,6 +105,13 @@ section.todo-list > * + * {
   margin-top: .5rem;
 }
 
+section.todo-list + hr {
+  margin-top: 1.5rem;
+}
+section.todo-list + hr + button {
+  /*float: right;*/
+}
+
 [role="toolbar"] {
   display: flex;
   justify-content: space-between;
@@ -139,11 +146,10 @@ button {
   background: #fff;
 }
 
-button.add-todo-list {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: .5em;
+hr {
+  color: currentColor;
+  border-style: solid;
+  border-width: 2px;
 }
 
 li button {
