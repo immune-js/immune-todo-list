@@ -1,0 +1,231 @@
+* {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+html {
+  font-size: calc(1em + 1vw);
+  font-family: Barlow, sans-serif;
+}
+
+body {
+  max-width: 20rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+nav[role="navigation"] {
+  padding-bottom: .5rem;
+  text-align: center;
+  border-bottom-style: solid;
+}
+
+nav[role="navigation"] > ul > li {
+  display: inline-block;
+}
+
+nav[role="navigation"] > ul > li:not(:last-child)::after {
+  content: "\00a0\00a0|\00a0\00a0";
+  margin-top: .5rem;
+}
+
+nav[role="navigation"] a {
+  color: currentColor;
+}
+
+[aria-current="page"] {
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul:empty, .empty-state {
+  display: none;
+}
+
+ul:empty + .empty-state {
+  display: block;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tick {
+  display: inline-block;
+  width: 0.66rem;
+  min-width: 0.66rem;
+  height: 0.66rem;
+  border: 0.125rem solid;
+  margin-right: 0.25rem;
+  border-radius: 0.125rem;
+}
+
+[type="checkbox"] + label {
+  display: flex;
+  align-items: center;
+}
+
+[type="checkbox"]:checked + label .tick {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaGVpZ2h0PSI1MCIgd2lkdGg9IjUwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgdmlld0JveD0iMCAwIDUwLjAwMDAwMSA1MC4wMDAwMDEiPiA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC0xMDAyLjQpIj4gIDxyZWN0IHN0eWxlPSJzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlOiMxYTFhMWE7c3Ryb2tlLXdpZHRoOjMuNDQ1MztzdHJva2UtbGluZWNhcDpyb3VuZDtmaWxsOiMxYTFhMWEiIHRyYW5zZm9ybT0ibWF0cml4KC44ODc1OSAuNDYwNjQgLS40NTEyNyAuODkyMzkgMCAwKSIgcnk9IjEuMTUwNCIgaGVpZ2h0PSIzMS42OTEiIHdpZHRoPSI1Ljk5MyIgeT0iODgyLjcxIiB4PSI0ODcuMTkiLz4gIDxyZWN0IHN0eWxlPSJzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlOiMxYTFhMWE7c3Ryb2tlLXdpZHRoOjMuMTM5MjtzdHJva2UtbGluZWNhcDpyb3VuZDtmaWxsOiMxYTFhMWEiIHRyYW5zZm9ybT0icm90YXRlKDI3LjA4NSkiIHJ5PSIuOTExNjkiIGhlaWdodD0iNi4yNzgyIiB3aWR0aD0iMTguODM1IiB5PSI5MTEuMjIiIHg9IjQ3OC42MiIvPiA8L2c+PC9zdmc+);
+  background-repeat: none;
+  background-position: center;
+  background-size: 100%;
+}
+
+[type="checkbox"]:checked + label .text {
+  text-decoration: line-through;
+}
+
+li label {
+  flex: 2;
+}
+
+li + li {
+  margin-top: 0.55rem;
+}
+
+section.todo-list + section.todo-list {
+  border-top-style: solid;
+  margin-top: 1rem;
+}
+
+section.todo-list > * + * {
+  margin-top: .5rem;
+}
+
+[role="toolbar"] {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+[role="toolbar"] > h2,
+[role="toolbar"] > h3,
+[role="toolbar"] > h4,
+[role="toolbar"] > h5,
+[role="toolbar"] > h6,
+[role="toolbar"] > strong {
+  width: 100%;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+[role="toolbar"] > button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+[role="toolbar"] > button[aria-pressed="true"] {
+  font-weight: 600;
+}
+
+button {
+  margin: 0;
+  line-height: 1;
+  border: 4px solid;
+  border-radius: 5px;
+  background: #fff;
+}
+
+button.add-todo-list {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: .5em;
+}
+
+li button {
+  border: 0;
+  padding: 0;
+  background: 0;
+}
+
+button svg {
+  width: 1.125em;
+  height: 1.125em;
+}
+
+form {
+  margin-top: 1rem;
+  display: flex;
+}
+
+input, [type="submit"] {
+  border: 0.125rem solid;
+  border-radius: 0.125rem;
+  line-height: 1;
+}
+
+[type="text"] {
+  flex: 3;
+  margin-right: 0.25rem;
+}
+
+[type="submit"] {
+  background: #000;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #000;
+}
+
+[type="submit"][disabled] {
+  opacity: 0.33;
+}
+
+::-webkit-input-placeholder { 
+  color: #444;
+  font-style: italic;
+}
+::-moz-placeholder { 
+  color: #444;
+  font-style: italic;
+}
+:-ms-input-placeholder { 
+  color: #444;
+  font-style: italic;
+}
+:-moz-placeholder { 
+  color: #444;
+  font-style: italic;
+}
+
+input:focus, button:focus, [type="checkbox"]:focus + label .tick {
+  outline: none;
+  box-shadow: 0 0 0 0.125rem #2a7fff;
+}
+
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Animations */
+
+.scale-enter { opacity: 0; transform: scaleY(0); }
+
+/* Utilities */
+
+.vh {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding:0 !important;
+  border:0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.smaller {
+  font-size: 0.75rem;
+}

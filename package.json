@@ -1,0 +1,49 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "A todo list application build with immune",
+  "scripts": {
+    "start": "PLATFORM=browser NODE_ENV=development webpack-dev-server --content-base build/ --historyApiFallback --port 8080",
+    "now-build": "npm run build:prod",
+    "now-start": "PLATFORM=server NODE_ENV=production node build/backend.js",
+    "clean": "rm -rf build/*",
+    "build": "npm run build:client; npm run build:server",
+    "build:prod": "rm -rf build; NODE_ENV=production npm run build:client; npm run build:server; gzip build/client/*.css; gzip build/client/*.js",
+    "build:client": "webpack",
+    "build:server": "./node_modules/.bin/webpack --config webpack-server.config.js",
+    "server": "PLATFORM=server npm run build ; PLATFORM=server NODE_ENV=development node build/backend.js",
+    "server:prod": "PLATFORM=server npm run build:prod ; PLATFORM=server NODE_ENV=production node build/backend.js",
+    "server:only": "PLATFORM=server npm run build:server ; PLATFORM=server NODE_ENV=production node build/backend.js",
+    "test": "jest client",
+    "test:watch": "jest client --watch"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "immune": "git+https://github.com/immune-js/immune.git",
+    "koa": "^2.3.0",
+    "koa-body": "^2.5.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.10",
+    "babel-minify-webpack-plugin": "^0.2.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "csso-webpack-plugin": "^1.0.0-beta.8",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "html-webpack-plugin": "2.22.0",
+    "jest": "^20.0.4",
+    "json-loader": "^0.5.7",
+    "progress-bar-webpack-plugin": "^1.10.0",
+    "source-map-support": "^0.4.18",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "2.3.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "author": "Patrik Hedman",
+  "license": "MIT"
+}

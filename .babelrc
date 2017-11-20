@@ -1,0 +1,24 @@
+{
+  "env": {
+    "production": {
+      "presets": [ ["es2015", { "modules": false }], "stage-0" ],
+      "plugins": [ "immune/babel-plugin" ]
+    },
+    "test": {
+      "presets": [ "es2015", "stage-0" ],
+      "plugins": [ "immune/babel-plugin" ]
+    },
+    "development": {
+      "presets": [ "es2015", "stage-0" ],
+      "plugins": [ "immune/babel-plugin" ]
+    },
+    "server-prod": {
+      "presets": [ "es2015", "stage-0" ],
+      "plugins": [ "immune/babel-plugin" ]
+    },
+    "server-dev": {
+      "presets": [ "es2015", "stage-0" ],
+      "plugins": [ "immune/babel-plugin" ]
+    }
+  }  
+}
