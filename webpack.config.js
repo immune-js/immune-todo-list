@@ -27,6 +27,7 @@ module.exports =
   , output  :
       { path       : path.resolve("build", "client")
       , filename   : "[name].[chunkhash].js"
+      , chunkFilename: '[name].[chunkhash].js'
       , publicPath : ifBrowser("/", "/build/client/")
       }
   , resolve : 
@@ -48,6 +49,7 @@ module.exports =
           , 'process.env.DEBUG'    : JSON.stringify(process.env.DEBUG)
           }
         )
+      , new webpack.optimize.CommonsChunkPlugin({ name: "commons", filename: "commons.[chunkhash].js" })
       , new ProgressPlugin({ format: '  building client: [:bar] :percent', clear: false })
       , ifProd(new ExtractTextPlugin("[name].[chunkhash].css"))
       , ifProd(new CssoPlugin())

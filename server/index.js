@@ -1,18 +1,19 @@
 import "babel-polyfill"
 
-import fs         from "fs"
-import koa        from "koa"
-import serve      from "koa-static"
-import bodyparser from "koa-body"
-import Router     from "koa-router"
-import routes     from "../client/js/routes"
-import Server     from "immune/server"
-import API        from "./api"
+import fs          from "fs"
+import koa         from "koa"
+import serve       from "koa-static"
+import bodyparser  from "koa-body"
+import Router      from "koa-router"
+import Server      from "immune/server"
+import application from "../client/js/application"
+import API         from "./api"
 
 const app    = new koa()
+const port   = process.env.SERVER_PORT || 9001
 const router = Router()
 
-const server = Server(routes, 
+const server = Server(application, 
   { template : fs.readFileSync("./build/client/index.html", "UTF-8")
   , tags     :
       { lang  : "<!-- APP_LANG -->"
@@ -24,24 +25,19 @@ const server = Server(routes,
   }
 )
 
+console.log("server:", server)
+
 app.use(bodyparser({ multipart: true }))
 app.use(serve("."))
 
-Object.keys(routes.pages).forEach(route => 
-  router.get(route, async (ctx, next) => 
-    ctx.body = await server.render({ ctx, route, language: "en", dir: "ltr" })
-  )
-)
-
 API(router)
+
+app.use(async (context, next) => {
+  context.body = await server.render({ context, lang: "en", dir: "ltr" })
+})
 
 app.use(router.routes())
 
-app.use(async (ctx, next) => {
-  ctx.status   = 404
-  ctx.body     = await server.render({ ctx, route: 404, layout: false, language: "en", dir: "ltr" })
-})
+app.listen(port)
 
-app.listen(9001)
-
-console.log("Server listening on http://localhost:9001")
+console.log("Server listening on http://localhost:" + port)

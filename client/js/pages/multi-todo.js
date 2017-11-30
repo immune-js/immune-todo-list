@@ -14,8 +14,9 @@ export const Msg = Union(
   }
 )
 
-export const init = ({ context }) =>
-  step({ todoLists: {} }, [ todoList.mount("todoLists") ])
+export const init = ({ context }) => (
+  { state: { todoLists: {} }, effects: [ Msg.AddTodoList() ] }
+)
 
 export const update = (state, msg, context) => msg::caseOf(
   { AddTodoList    : () => step(state, [ todoList.mount   ([ "todoLists"     ]) ])
@@ -25,10 +26,10 @@ export const update = (state, msg, context) => msg::caseOf(
 
 export const view = ({ state, actions: { AddTodoList, RemoveTodoList }, props }) => 
   h("div", 
-    [ todoList.dynamic([state, "todoLists"], (id, list) =>
+    [ todoList.dynamic([state, "todoLists"], (id, todoList) =>
         h(`section[labelled-by='${id}'].todo-list`, {},
           [ h("p.smaller", ["A simple todo list demo using the ", h("strong", "immune framework")])
-          , list({ id })
+          , todoList({ id })
           , h(`button[aria-label='delete todolist']`, { onclick: () => RemoveTodoList(id) }, "Remove List")
           ]
         )
