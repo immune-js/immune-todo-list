@@ -59,7 +59,7 @@ export const update = (state, msg, context) => msg::caseOf(
 
 export const view = ({ state: { route, location }, actions, props: { context } }) => 
   h("div",
-    [ h("nav", h("ul", 
+    [ h("nav[role='navigation']", h("ul", 
         [ h("li", navLink( location.path, "/"      , "Todos"               ))
         , h("li", navLink( location.path, "/multi" , "Multiple Todo Lists" ))
         ]
